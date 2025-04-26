@@ -12,16 +12,18 @@ import javafx.stage.Stage;
 import com.example.game2048.controller.HomeScreenController;
 import com.example.game2048.Game2048App;
 
+// View class responsible for displaying the board and handling user input
 public class Game2048View extends Observable {
 
 
     @FXML
-    private Pane gamePane;
+    private Pane gamePane; // Pane that holds the tiles
     @FXML
-    private Label scoreLabel;
+    private Label scoreLabel; // Displays the current score
 
-    private TileNode[][] tiles = new TileNode[4][4];
+    private TileNode[][] tiles = new TileNode[4][4]; // 2D array for the visual tiles
 
+    // Initializes the game board and key event handling
     @FXML
     public void initialize() {
         for (int i = 0; i < 4; i++) {
@@ -36,6 +38,7 @@ public class Game2048View extends Observable {
 
         gamePane.setFocusTraversable(true);
 
+        // Handle keyboard arrow key events
         gamePane.setOnKeyPressed(event -> {
             int command = -1;
             switch (event.getCode()) {
@@ -48,11 +51,12 @@ public class Game2048View extends Observable {
 
             if (command != -1) {
                 setChanged();
-                notifyObservers(command); // שליחת פקודת המשתמש ל-Controller
+                notifyObservers(command); // Send user command to the Controller
             }
         });
     }
 
+    // Updates the tile display based on the current board state
     public void displayData(int[][] data) {
         System.out.println("Data to display:");
     for (int i = 0; i < 4; i++) {
@@ -68,6 +72,7 @@ public class Game2048View extends Observable {
         }
     }
 
+    // Shows a pop-up message when the player wins
     public void showWinMessage() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Victory!");
@@ -80,7 +85,7 @@ public class Game2048View extends Observable {
              HomeScreenController controller = loader.getController();
              controller.setApp(Game2048App.getInstance());
              Scene scene = new Scene(root, 500, 500);
-             Stage stage = (Stage) gamePane.getScene().getWindow();  // לוקחים את החלון הנוכחי
+             Stage stage = (Stage) gamePane.getScene().getWindow();
              stage.setScene(scene);
 
     } catch (Exception e) {
@@ -88,6 +93,7 @@ public class Game2048View extends Observable {
     }
     }
 
+    // Shows a pop-up message when the player loses
     public void showGameOverMessage(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Game Over!");
@@ -106,10 +112,12 @@ public class Game2048View extends Observable {
             e.printStackTrace();
         }
     }
+    // Updates the score label
     public void updateScore(int score) {
     scoreLabel.setText("Score: " + score);
     }
 
+    // Getter for the game pane (used by the controller)
     public Pane getGamePane() {
         return gamePane;
     }

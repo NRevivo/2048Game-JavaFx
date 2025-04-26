@@ -11,26 +11,31 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+// Main application class for the 2048 game
 public class Game2048App extends Application {
 
-    private static Game2048App instance;
+    private static Game2048App instance; // Singleton instance
 
+    // Constructor: sets the static instance
     public Game2048App() {
         instance = this;
     }
 
+    // Returns the singleton instance
     public static Game2048App getInstance() {
         return instance;
     }
 
-    private Stage primaryStage;  // שומרים עותק של ה-Stage כדי שנוכל להחליף מסכים
+    private Stage primaryStage;  // Main application window
 
+    // Entry point: starts the app and shows the home screen
     @Override
     public void start(Stage stage) throws Exception {
         this.primaryStage = stage;
         showHomeScreen();
     }
 
+    // Loads and displays the Home screen
     private void showHomeScreen() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/game2048/HomeScreen.fxml"));
         Parent root = loader.load();
@@ -44,6 +49,7 @@ public class Game2048App extends Application {
         primaryStage.show();
     }
 
+    // Loads and displays the Game screen
     public void showGameScreen() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/game2048/Game2048View.fxml"));
         Parent root = loader.load();
@@ -59,6 +65,7 @@ public class Game2048App extends Application {
         controller.play();
     }
 
+    // Launches the application
     public static void main(String[] args) {
         launch();
     }

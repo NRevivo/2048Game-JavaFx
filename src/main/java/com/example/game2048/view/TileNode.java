@@ -6,12 +6,14 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+// TileNode represents a visual tile in the game board
 public class TileNode extends StackPane {
 
-    private Rectangle background;
-    private Text valueText;
-    private int value;
+    private Rectangle background; // Background rectangle
+    private Text valueText;        // Text showing the tile's value
+    private int value;             // Numeric value of the tile
 
+    // Constructor: initializes the tile node with a given value
     public TileNode(int value) {
         this.value = value;
         background = new Rectangle(80, 80);
@@ -26,12 +28,14 @@ public class TileNode extends StackPane {
         getChildren().addAll(background, valueText);
     }
 
+    // Updates the value of the tile and refreshes its style
     public void setValue(int value) {
         this.value = value;
         valueText.setText(value > 0 ? String.valueOf(value) : "");
         updateStyle();
     }
 
+    // Updates the tile background color based on its value
     private void updateStyle() {
         Color color;
         switch (value) {

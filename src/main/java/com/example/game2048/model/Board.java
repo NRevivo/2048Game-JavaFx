@@ -3,13 +3,16 @@ package com.example.game2048.model;
 
 import java.util.*;
 
+// Board class representing the 2048 game grid and game logic
 public class Board {
+
+    // 4x4 board and score tracking
     private Tile[][] board;
     private static final int size = 4;
     private int score;
     private Random random = new Random();
 
-    // Constructors
+    // Constructor: initializes empty board and adds two random tiles
     public Board() {
         board = new Tile[size][size];
         for (int i = 0; i < size; i++) {
@@ -22,7 +25,7 @@ public class Board {
         addRandomTile();
     }
 
-    // Getters and Setters
+    // Getters
     public Tile[][] getBoard() {
         return board;
     }
@@ -31,11 +34,8 @@ public class Board {
         return score;
     }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
 
-    // Public Methods
+    // Public move methods
     public boolean moveLeft(){
         boolean moved = false;
         resetMerged();
@@ -132,6 +132,7 @@ public class Board {
         return moved;
     }
 
+    // Resets merged flags before each move
      public void resetMerged(){
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -140,6 +141,7 @@ public class Board {
         }
     }
 
+    // Checks if a 2048 tile was created
     public boolean isWinner(){
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -152,6 +154,7 @@ public class Board {
         return false;
     }
 
+    // Checks if no moves are possible (game over)
     public boolean isGameOver(){
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -171,9 +174,9 @@ public class Board {
 }
 
 
-    // Private Helpers
+    // Private Helpers:
 
-    // Tile manipulation
+    // Adds a random tile (2) to an empty spot
     private void addRandomTile(){
         ArrayList<int[]> emtypos = new ArrayList<>();
         for (int i = 0; i < size; i++) {
@@ -191,8 +194,7 @@ public class Board {
 
 
 
-    // Row/Column operations
-
+    // Extracts non-empty tiles from a row
     List<Tile> extractNotEmptyRow(Tile[] row){
         ArrayList<Tile> filtered = new ArrayList<>();
         for (Tile tile : row) {
@@ -203,6 +205,7 @@ public class Board {
         return filtered;
     }
 
+    // Extracts non-empty tiles from a column
     List<Tile> extractNotEmptyColumn(int colIndex) {
         ArrayList<Tile> filtered = new ArrayList<>();
         for (int i = 0; i < size; i++) {
@@ -213,6 +216,7 @@ public class Board {
         return filtered;
     }
 
+    // Reverses a row
     List<Tile> reverseRow(Tile[] row){
         int size = row.length;
         List<Tile> reversed = new ArrayList<>(size);
@@ -222,6 +226,7 @@ public class Board {
         return reversed;
     }
 
+    // Reverses a column
     List<Tile> reverseColumn(int colIndex){
         List<Tile> reversed = new ArrayList<>(size);
         for (int i = size - 1; i >= 0; i--) {
@@ -230,6 +235,7 @@ public class Board {
         return reversed;
     }
 
+    // Applies merged values back into a row
     boolean applyMergedRow(Tile[] row, List<Integer> merged){
         boolean moved = false;
 
@@ -244,6 +250,7 @@ public class Board {
         return moved;
     }
 
+    // Applies merged values back into a column
     boolean applyMergedColumn(int colIndex, List<Integer> merged) {
         boolean moved = false;
         for (int i = 0; i < size; i++) {
@@ -256,6 +263,7 @@ public class Board {
         return moved;
     }
 
+    // Merges tiles according to 2048 rules
     List<Integer> mergeTiles(List<Tile> filtered){
         ArrayList<Integer> merged = new ArrayList<>();
         for (int j = 0; j < filtered.size(); j++) {
