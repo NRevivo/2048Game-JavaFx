@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
+<VBox fx:controller="com.example.game2048.controller.HomeScreenController" spacing="20" alignment="CENTER" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <Button text="Start Game" fx:id="startButton" prefWidth="200" prefHeight="50"/>
+</VBox>

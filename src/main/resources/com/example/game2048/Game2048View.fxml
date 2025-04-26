@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Label?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1"
+      fx:controller="com.example.game2048.view.Game2048View">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label fx:id="scoreLabel" text="Score: 0" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+    <Pane fx:id="gamePane" prefWidth="400" prefHeight="400"/>
+
+</VBox>
