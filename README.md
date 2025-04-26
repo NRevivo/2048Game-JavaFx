@@ -2,8 +2,6 @@
 
 A clean, simple, and fully functional implementation of the popular 2048 game using JavaFX and following the MVC architecture.
 
-![Home Screen](assets/home_screen.png)
-![Game Screen](assets/game_screen.png)
 
 ## 🚀 Features
 
